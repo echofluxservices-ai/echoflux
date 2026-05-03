@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoFlux | Modern Solutions</title>
+    <style>
+        /* 1. ANIMATIONS & SMOOTHNESS */
+        @keyframes fluxIn {
+            0% { opacity: 0; transform: translateY(30px); filter: blur(10px); }
+            100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        :root {
+            --cyan: #00d4ff;
+            --bg: #050a10;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        html, body {
+            height: 100%; margin: 0; padding: 0;
+            scroll-behavior: smooth;
+            background-color: var(--bg);
+            background-image: radial-gradient(circle at center, #001f3f 0%, #050a10 100%);
+            background-attachment: fixed;
+            color: #e0e0e0; 
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        header {
+            padding: 80px 20px 40px;
+            text-align: center;
+            animation: fluxIn 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 4.5rem; font-weight: 900; margin: 0;
+            text-transform: uppercase; letter-spacing: -3px;
+            color: var(--cyan);
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+
+        .tagline {
+            color: #888; letter-spacing: 6px; font-size: 0.9rem;
+            text-transform: uppercase; margin-top: 10px;
+        }
+
+        .character-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            padding: 40px; border-radius: 20px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            max-width: 800px; width: 90%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            animation: fluxIn 1.2s ease-out both;
+        }
+
+        .character-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyan);
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.2);
+        }
+
+        .glaze-title {
+            color: var(--cyan); font-size: 1.8rem; font-weight: 800;
+            margin-bottom: 15px; text-transform: uppercase;
+        }
+
+        .glaze-text {
+            font-size: 1.1rem; line-height: 1.8; color: #b0b0b0;
+        }
+
+        .cta-link {
+            display: inline-block;
+            background: var(--cyan); color: var(--bg);
+            padding: 16px 40px; border-radius: 8px;
+            text-decoration: none; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 2px;
+            transition: 0.3s; border: none; cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .cta-link:hover {
+            background: #fff; box-shadow: 0 0 30px var(--cyan);
+            transform: scale(1.05);
+        }
+
+        input, select, textarea {
+            background: rgba(0,0,0,0.5); border: 1px solid #333;
+            padding: 15px; color: white; border-radius: 8px;
+            width: 100%; box-sizing: border-box; margin-bottom: 15px;
+            font-family: inherit; transition: 0.3s;
+        }
+
+        input:focus { border-color: var(--cyan); outline: none; }
+
+        .hidden { display: none; }
+        .fade-in { animation: fluxIn 0.5s ease-out forwards; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ECHOFLUX</h1>
+        <p class="tagline">The Gold Standard of Modern Web</p>
+    </header>
+
+    <div id="main-glaze">
+        <div class="character-card">
+            <div class="glaze-title">Elite Performance. No Compromises.</div>
+            <p class="glaze-text">
+                Welcome to <strong>EchoFlux</strong>. We don't just "make websites"—we engineer digital powerhouses. 
+                Our code is built for velocity, our designs are built for resonance, and our systems are built to dominate.
+            </p>
+            <button class="cta-link" onclick="showAuth()">INITIALIZE PROJECT REQUEST</button>
+        </div>
+
+        <div class="character-card">
+            <div class="glaze-title">Why EchoFlux?</div>
+            <p class="glaze-text">
+                Industry-leading UI/UX. Scalable architecture. Seamless 24/7 flux monitoring. 
+                If your digital presence feels like it's stuck in the past, it's time for a system upgrade.
+            </p>
+        </div>
+    </div>
+
+    <div id="auth-section" class="hidden">
+        <div class="character-card">
+            <h3 id="auth-title">CLIENT UPLINK REQUIRED</h3>
+            <p style="margin-bottom: 20px; color: #888;">You must be logged into the EchoFlux Grid to request a build.</p>
+            
+            <div id="login-fields">
+                <input type="text" placeholder="CLIENT ID / EMAIL">
+                <input type="password" placeholder="ACCESS KEY">
+                <button class="cta-link" onclick="unlockRequest()">AUTHORIZE & ENTER</button>
+                <p style="font-size: 0.8rem; margin-top: 15px;">Need an account? <span onclick="toggleAuthMode()" style="color:var(--cyan); cursor:pointer;">Request Access</span></p>
+            </div>
+
+            <div id="signup-fields" class="hidden">
+                <input type="text" placeholder="FULL NAME">
+                <input type="email" placeholder="EMAIL ADDRESS">
+                <input type="password" placeholder="CREATE KEY">
+                <button class="cta-link" onclick="unlockRequest()">CREATE ACCOUNT</button>
+                <p style="font-size: 0.8rem; margin-top: 15px;">Already have access? <span onclick="toggleAuthMode()" style="color:var(--cyan); cursor:pointer;">Log In</span></p>
+            </div>
+            
+            <button class="cta-link" style="background: transparent; color: #555; border: 1px solid #333; margin-top: 10px;" onclick="showMain()">BACK TO HOME</button>
+        </div>
+    </div>
+
+    <div id="request-section" class="hidden">
+        <div class="character-card">
+            <h3 style="color: #00ff88;">UPLINK SECURED</h3>
+            <p class="glaze-text">Welcome, Client. Register your project parameters below.</p>
+            
+            <form action="https://formspree.io/f/mlgzgodw" method="POST">
+                <input type="text" name="project_name" placeholder="PROJECT CODENAME" required>
+                <select name="type">
+                    <option value="business">BUSINESS SYSTEM</option>
+                    <option value="ecommerce">E-COMMERCE FLOW</option>
+                    <option value="personal">ELITE PORTFOLIO</option>
+                </select>
+                <textarea name="description" rows="5" placeholder="DESCRIBE YOUR VISION..." required></textarea>
+                <button type="submit" class="cta-link">SUBMIT FOR REVIEW</button>
+            </form>
+            <button class="cta-link" style="background: #333; color: white;" onclick="location.reload()">LOGOUT</button>
+        </div>
+    </div>
+
+    <div id="success-section" class="hidden">
+        <div class="character-card">
+            <h3 style="color: var(--cyan);">TRANSMISSION RECEIVED</h3>
+            <p class="glaze-text">Your request has been uploaded to the EchoFlux grid. An architect will contact you shortly.</p>
+            <button class="cta-link" onclick="location.reload()">RETURN TO HOME</button>
+        </div>
+    </div>
+
+    <a href="mailto:hello@echoflux.com" style="color: #444; text-decoration: none; font-size: 0.8rem; margin: 40px 0;">
+        SYSTEM_ORIGIN: Faisalabad, PK // HELLO@ECHOFLUX.COM
+    </a>
+
+    <script>
+        const main = document.getElementById('main-glaze');
+        const auth = document.getElementById('auth-section');
+        const request = document.getElementById('request-section');
+        const success = document.getElementById('success-section');
+
+        function showAuth() {
+            main.classList.add('hidden');
+            auth.classList.remove('hidden');
+            auth.classList.add('fade-in');
+            window.scrollTo(0,0);
+        }
+
+        function showMain() {
+            auth.classList.add('hidden');
+            main.classList.remove('hidden');
+            main.classList.add('fade-in');
+        }
+
+        function toggleAuthMode() {
+            document.getElementById('login-fields').classList.toggle('hidden');
+            document.getElementById('signup-fields').classList.toggle('hidden');
+            const title = document.getElementById('auth-title');
+            title.innerText = title.innerText === "CLIENT UPLINK REQUIRED" ? "REGISTER NEW CLIENT" : "CLIENT UPLINK REQUIRED";
+        }
+
+        function unlockRequest() {
+            auth.classList.add('hidden');
+            request.classList.remove('hidden');
+            request.classList.add('fade-in');
+            window.scrollTo(0,0);
+        }
+    </script>
+</body>
+</html>
